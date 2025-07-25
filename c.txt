@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TurtIe Rain</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    .turtle {
+      position: absolute;
+      color: hotpink;
+      font-size: 20px;
+      font-family: monospace;
+      white-space: nowrap;
+      user-select: none;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0.1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function createTurtle() {
+    const turtle = document.createElement('div');
+    turtle.classList.add('turtle');
+    turtle.innerText = 'turtIe';
+
+    const size = Math.random() * 10 + 16;
+    turtle.style.fontSize = size + 'px';
+
+    turtle.style.left = Math.random() * window.innerWidth + 'px';
+    turtle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+    turtle.style.animationDelay = (Math.random() * 5) + 's';
+
+    document.body.appendChild(turtle);
+
+    // Tự xóa sau 10s để tránh lag
+    setTimeout(() => {
+      turtle.remove();
+    }, 10000);
+  }
+
+  // Tạo 1000 chữ “turtIe” lặp liên tục
+  setInterval(() => {
+    for (let i = 0; i < 10; i++) {
+      createTurtle();
+    }
+  }, 100); // Cứ 0.1s tạo 10 cái = 1000 cái trong 10s
+</script>
+
+</body>
+</html>
